@@ -444,11 +444,10 @@ const APP = {
 
   async doRegister() {
     const username = document.getElementById('reg-username').value.trim();
-    const fullname = document.getElementById('reg-fullname').value.trim();
     const password = document.getElementById('reg-password').value;
     const errEl = document.getElementById('reg-error');
 
-    if (!username || !fullname || !password) {
+    if (!username || !password) {
       errEl.textContent = 'Tüm alanları doldur!';
       errEl.style.display = 'block';
       return;
@@ -478,7 +477,7 @@ const APP = {
     }
 
     users[username] = {
-      fullname,
+      fullname: username,
       password,
       createdAt: new Date().toISOString()
     };
