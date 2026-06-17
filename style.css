@@ -257,9 +257,11 @@ ul, ol { list-style: none; }
   display: flex;
   flex-direction: column;
   z-index: var(--z-sidebar);
-  transition: width var(--transition-slow), transform var(--transition-slow);
+  transition: width var(--transition-slow), left var(--transition-slow);
   overflow-y: auto; /* Fallback to standard scroll */
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* Safari scroll fix */
+  padding-bottom: 80px;
   box-shadow: 4px 0 24px rgba(0,0,0,0.3);
 }
 
@@ -2798,13 +2800,14 @@ ul, ol { list-style: none; }
 /* ── Mobile landscape / small tablet (< 768px) ── */
 @media (max-width: 768px) {
   .sidebar {
-    transform: translateX(-100%);
+    transform: none; /* Disable transform */
+    left: -280px; /* Use left for animation to avoid Safari scroll clip bug */
     width: 280px;
     z-index: calc(var(--z-modal) + 1);
   }
 
   .sidebar.active, .sidebar.open {
-    transform: translateX(0);
+    left: 0;
   }
 
   .sidebar-overlay {
