@@ -249,6 +249,7 @@ ul, ol { list-style: none; }
   left: 0;
   width: var(--sidebar-width);
   height: 100vh;
+  height: 100dvh; /* Mobile browser support */
   background: var(--gradient-sidebar);
   border-right: var(--border-glass);
   backdrop-filter: blur(var(--glass-blur));
@@ -257,8 +258,7 @@ ul, ol { list-style: none; }
   flex-direction: column;
   z-index: var(--z-sidebar);
   transition: width var(--transition-slow), transform var(--transition-slow);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden; /* Hide main overflow to let nav scroll */
   box-shadow: 4px 0 24px rgba(0,0,0,0.3);
 }
 
@@ -314,6 +314,8 @@ ul, ol { list-style: none; }
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  overflow-y: auto; /* Allow scrolling here */
+  padding-bottom: 80px; /* Extra padding for mobile bottom */
 }
 
 .nav-section-title {
