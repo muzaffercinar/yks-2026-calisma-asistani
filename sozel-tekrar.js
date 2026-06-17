@@ -1,103 +1,48 @@
 window.SOZEL_SON_TEKRAR = [
-  // ================= TYT TARİH =================
-  {
-    ders: "TYT Tarih",
-    konu: "İlk ve Orta Çağlarda Türk Dünyası",
-    bilgi: "Kavimler Göçü'nün en önemli siyasi sonucu Roma İmparatorluğu'nun ikiye ayrılması (395) ve Avrupa'nın bugünkü etnik yapısının (İngiliz, Fransız, Alman vb.) temellerinin atılmasıdır. Feodalite (derebeylik) rejimi ortaya çıkmıştır.",
-    pif: "⚠️ ÖSYM, Kavimler Göçü'nün 'siyasi' sonucu ile 'kültürel' sonucunu ayırt etmeni çok sever. Feodalite siyasi bir sonuçtur!",
-    ihtimal: 95
-  },
-  {
-    ders: "TYT Tarih",
-    konu: "Atatürk İlkeleri",
-    bilgi: "Eşitlik, sosyal devlet, ayrıcalıkların reddi ve halkın yararı vurgulanıyorsa cevap kesinlikle HALKÇILIK tır. Akılcılık, bilimsellik ve din-devlet işlerinin ayrımı LİKLİK tir. Ulusal bağımsızlık, milli bilinç MİLLİYETÇİLİK tir.",
-    pif: "⚠️ 'Millet Mektepleri'nin açılması hangi ilkedir?' derse, okuma-yazma oranını artırıp halka hizmet ettiği için öncelikle HALKÇILIKTIR.",
-    ihtimal: 98
-  },
-  // ================= AYT TARİH =================
-  {
-    ders: "AYT Tarih",
-    konu: "Osmanlı Dağılma Dönemi ve Fermanlar",
-    bilgi: "Tanzimat Fermanı (1839) ile padişah KENDİ GÜCÜNÜN ÜSTÜNDE kanun gücünü ilk kez kabul etmiştir. Islahat Fermanı (1856) ise tamamen GAYRİMÜSLİMLERE (Azınlıklara) ayrıcalıklar vererek devlete bağlılıklarını artırmayı hedefler.",
-    pif: "🔴 HER YIL SORULUR: Tanzimat herkesi, Islahat sadece azınlıkları kapsar. Sened-i İttifak (1808) ise padişahın yetkilerini kısıtlayan ilk belgedir.",
-    ihtimal: 92
-  },
-  {
-    ders: "AYT Tarih",
-    konu: "İslamiyet Öncesi Türk Tarihi",
-    bilgi: "Uygurlar, yerleşik hayata geçen ilk Türk devletidir. Maniheizm inancını benimsedikleri için et yemeleri ve savaşmaları yasaklanmış, bu da savaşçı kimliklerini zayıflatırken tarım, mimari ve sanatta (fresk) ilerlemelerini sağlamıştır.",
-    pif: "⚠️ Uygurların din değiştirmesi = Kültürel ve ekonomik değişimin (tarım) temel sebebidir.",
-    ihtimal: 94
-  },
+  // ================= TYT TARİH (5 Soru) - Temel ve Yorum Ağırlıklı =================
+  { ders: "TYT Tarih", konu: "Tarih ve Zaman", bilgi: "Tarihi olaylar tekrarlanamaz, deney ve gözlem yapılamaz. Neden-sonuç ilişkisi süreklidir. Olay (kısa süreli) ve Olgu (uzun süreli) ayrımı çok sorulur (Malazgirt Savaşı = Olay, Anadolu'nun Türkleşmesi = Olgu).", pif: "⚠️ ÖSYM olgu/olay ayrımını paragrafta verir. Süreç bildiriyorsa Olgudur.", ihtimal: 85 },
+  { ders: "TYT Tarih", konu: "İlk Çağ Uygarlıkları", bilgi: "Sümerler (Çivi yazısı, Ziggurat), Lidyalılar (Para, Kral Yolu), İyonyalılar (Özgür düşünce, Bilim), Hititler (Pankuş meclisi, Tavananna, Anal yıllıklar).", pif: "🔴 İyonyalıların bilimde gelişme sebebi merkezi otorite baskısının olmaması ve deniz ticaretiyle zenginleşmeleridir.", ihtimal: 90 },
+  { ders: "TYT Tarih", konu: "İlk Türk Devletleri", bilgi: "Kavimler Göçü (Feodalite, Hristiyanlığın yayılması), Asya Hun (Mete Han, Onluk Sistem), Kök Türkler (Ergenekon, Orhun Abideleri), Uygurlar (Yerleşik hayat, Din değişikliği).", pif: "⚠️ Uygurların din değiştirmesi (Maniheizm) savaşçı özelliklerini kaybettirmiş ama bilim/sanat/mimaride (şehirleşme) ilerletmiştir.", ihtimal: 95 },
+  { ders: "TYT Tarih", konu: "Türk İslam Devletleri", bilgi: "Karahanlılar (İlk Türk-İslam sentezi, Ribat, Türkçe resmi dil), Gazneliler (Hindistan'a 17 sefer), Büyük Selçuklu (Malazgirt, Nizamiye Medreseleri).", pif: "🟢 Gazneli Mahmut'un Hindistan seferleri 'Gaza ve Cihat' anlayışıyla İslamiyeti yayma amacı taşır.", ihtimal: 88 },
+  { ders: "TYT Tarih", konu: "Osmanlı Kuruluş ve Yükselme", bilgi: "İskan Politikası: Rumeli'de fethedilen yerlere Türkmenlerin yerleştirilmesi (Kalıcılık sağlamak). Devşirme Sistemi: Hristiyan çocukların alınıp Yeniçeri veya devlet adamı (Enderun) yapılması.", pif: "⚠️ İskan siyasetinde amaç bölgeyi Türkleştirmek ve İslamlaştırmaktır. Vergileri artırmak DEĞİLDİR.", ihtimal: 92 },
+  { ders: "TYT Tarih", konu: "Osmanlı Kültür ve Medeniyet", bilgi: "Divan-ı Hümayun: Günümüzdeki Bakanlar Kurulu. Seyfiye (Asker/Yönetici), İlmiye (Eğitim/Adalet-Şeyhülislam, Kadı), Kalemiye (Bürokrasi/Maliye-Defterdar, Nişancı).", pif: "🔴 'Kadı' ilmiye sınıfındadır, hem adalet (yargıç) hem de belediye işlerine bakar.", ihtimal: 94 },
+  { ders: "TYT Tarih", konu: "20. Yüzyıl Başlarında Osmanlı", bilgi: "Trablusgarp Savaşı (M. Kemal'in sömürgeciliğe karşı ilk savaşı), Balkan Savaşları (Batı Trakya ve Ege adaları kaybedildi), I. Dünya Savaşı (Kafkas ve Çanakkale cepheleri).", pif: "⚠️ Çanakkale Savaşı I. Dünya Savaşı'nı uzatırken, ABD'nin savaşa girmesi kısaltmıştır.", ihtimal: 96 },
+  { ders: "TYT Tarih", konu: "Milli Mücadele Hazırlık", bilgi: "Amasya Genelgesi (Kurtuluş Savaşı'nın Amacı, Gerekçesi, Yöntemi). Erzurum Kongresi (Toplanış bakımından bölgesel, kararlar ulusal). Sivas Kongresi (Her açıdan ulusal).", pif: "🔴 Amasya Genelgesi'nde ilk kez 'Milli Egemenlik'ten (Ulusun iradesi) üstü kapalı bahsedilmiştir.", ihtimal: 99 },
+  { ders: "TYT Tarih", konu: "İnkılap Tarihi - İlkeler", bilgi: "Cumhuriyetçilik (Seçim, Meclis, Milli Egemenlik), Milliyetçilik (Bağımsızlık, Türk tarihi/dili), Halkçılık (Eşitlik, Sosyal devlet), Laiklik (Akılcılık, Din-Devlet ayrımı), Devletçilik (Ekonomi, Fabrika).", pif: "⚠️ 'Millet Mektepleri' eşit eğitim verdiği için doğrudan Halkçılıktır.", ihtimal: 98 },
 
-  // ================= TYT COĞRAFYA =================
-  {
-    ders: "TYT Coğrafya",
-    konu: "İklim ve Grafikler",
-    bilgi: "Akdeniz iklim grafiğinde kış aylarında yağış sütunları tavan yapar, yaz aylarında sıfıra yaklaşır. Ekvatoral iklimde ise her ay 100 mm'nin üzerinde yağış vardır ve sıcaklık hep 20°C üzerindedir.",
-    pif: "🔴 HER YIL HARİTALI SORU: ÖSYM dünya haritası verip Akdeniz iklimi noktalarını işaretler. Kaliforniya, Orta Şili, Güney Afrika (Kap Bölgesi) ve Güneybatı Avustralya'yı ASLA unutma!",
-    ihtimal: 99
-  },
-  {
-    ders: "TYT Coğrafya",
-    konu: "Doğal Afetler",
-    bilgi: "Deprem ve Volkanizma jeolojik afetlerdir, yani yer yapısıyla ilgilidir. İklimle (klimatolojik) ALAKALARI YOKTUR. Ancak heyelan (kütle hareketi) hem eğim (jeomorfolojik) hem de yağışa (klimatolojik) bağlıdır.",
-    pif: "⚠️ Türkiye'de heyelan en çok İlkbahar'da Karadeniz'de görülür. Sebebi sadece yağış değil, kar erimeleridir!",
-    ihtimal: 95
-  },
-  
-  // ================= AYT COĞRAFYA =================
-  {
-    ders: "AYT Coğrafya",
-    konu: "Çevre Sorunları ve Ekstrem Olaylar",
-    bilgi: "Tsunami bir ekstrem doğa olayıdır fakat kaynağı METEOROLOJİK DEĞİLDİR, JEOLOJİKTİR (deniz tabanındaki deprem/volkanizma). Tropikal siklonlar (kasırgalar) ise sadece sıcak okyanusların üzerinde (Ekvator çevresi) oluşur.",
-    pif: "⚠️ Türkiye'de okyanusa kıyı olmadığı için tayfun/kasırga ve dev tsunamiler görülmez.",
-    ihtimal: 90
-  },
-  {
-    ders: "AYT Coğrafya",
-    konu: "Türkiye'nin Bölgesel Kalkınma Projeleri",
-    bilgi: "GAP (Güneydoğu): Tarımda sulama ve hidroelektrik temel hedeftir. ZBK (Zonguldak-Bartın-Karabük): Madencilik ve demir-çelik sanayisine dayanır. DOKAP (Doğu Karadeniz): Yaylacılık, turizm ve balıkçılık ön plandadır.",
-    pif: "⚠️ Soru sana 'hangi proje madencilik odaklıdır' diyorsa direkt ZBK'yı işaretle.",
-    ihtimal: 88
-  },
+  // ================= AYT TARİH (10 Soru - Sosyal 1 / 11 Soru - Sosyal 2) - Bilgi Ağırlıklı =================
+  { ders: "AYT Tarih", konu: "İslam Tarihi", bilgi: "Bedir Savaşı (İlk İslam savaş hukuku), Uhud Savaşı (Okçular tepesi), Hendek Savaşı (Son savunma). Hz. Ömer dönemi devlet teşkilatlanması (Divan, Kadı ataması, Hicri takvim).", pif: "⚠️ Kur'an-ı Kerim Hz. Ebubekir döneminde kitap haline getirilmiş, Hz. Osman döneminde çoğaltılmıştır.", ihtimal: 85 },
+  { ders: "AYT Tarih", konu: "Osmanlı Dağılma Dönemi (Fermanlar)", bilgi: "Sened-i İttifak (1808) Ayanlar ile Padişah arasında (Padişahın yetkisi ilk kısıtlandı). Tanzimat Fermanı (1839) kanun üstünlüğü. Islahat Fermanı (1856) Gayrimüslimlere ekstra haklar.", pif: "🔴 Sened-i İttifak demokratikleşme yolunda ilk adımdır ama anayasa DEĞİLDİR.", ihtimal: 95 },
+  { ders: "AYT Tarih", konu: "Kurtuluş Savaşı Cepheler", bilgi: "Doğu Cephesi (Kazım Karabekir - Ermenilere karşı - Gümrü Antlaşması). Güney Cephesi (Kuvay-ı Milliye - Fransızlara karşı). Batı Cephesi (Düzenli Ordu - Yunanlılara karşı).", pif: "⚠️ TBMM'yi tanıyan ilk devlet Ermenistan (Gümrü), ilk Müslüman devlet Afganistan, ilk İtilaf devleti Fransa'dır (Ankara Ant.).", ihtimal: 92 },
+  { ders: "AYT Tarih", konu: "Soğuk Savaş ve Çağdaş Türk Tarihi", bilgi: "Truman Doktrini ve Marshall Planı (ABD'nin SSCB'yi çevreleme politikası ve ekonomik yardımı). NATO'ya girişimiz (Kore'ye asker göndermemiz sayesinde 1952'de).", pif: "🟢 Türkiye, Marshall yardımlarından faydalanmak ve Sovyet tehdidinden korunmak için Batı blokuna (NATO) yönelmiştir.", ihtimal: 90 },
+  { ders: "AYT Tarih", konu: "Atatürk Dönemi Dış Politika", bilgi: "Nüfus Mübadelesi (Yunanistan ile), Musul Sorunu (İngiltere ile, aleyhimize çözüldü), Hatay'ın Anavatana katılması (1939 - Atatürk'ün vefatından sonra).", pif: "⚠️ Atatürk döneminde Türkiye Cemiyet-i Akvam'a (Milletler Cemiyeti) davet üzerine (İspanya'nın teklifi) katılmıştır (1932).", ihtimal: 94 },
 
-  // ================= TYT FELSEFE =================
-  {
-    ders: "TYT Felsefe",
-    konu: "Bilgi Felsefesi (Epistemoloji)",
-    bilgi: "Rasyonalizm (Akılcılık) doğru bilginin doğuştan aklımızda olduğunu savunur (Sokrates, Platon, Descartes). Empirizm (Deneyimcilik) ise zihnin boş bir levha (tabula rasa) olduğunu ve her şeyi sonradan duyularla öğrendiğimizi söyler (John Locke).",
-    pif: "🟢 ARADA ÇIKAR: Rasyonalizm = Matematiksel kesinlik / Empirizm = Gözlem ve deneyim.",
-    ihtimal: 85
-  },
-  {
-    ders: "TYT Felsefe",
-    konu: "Ahlak Felsefesi (Etik)",
-    bilgi: "Kant'ın 'Ödev Ahlakı'nda eylemin SONUCU DEĞİL, NİYETİ önemlidir. Birine yardım ederken gösteriş amacı taşıyorsan, Kant'a göre bu ahlaki bir eylem değildir. Koşulsuz buyruk esastır.",
-    pif: "⚠️ 'Kant' = 'Ödev', 'İyi niyet', 'Evrensel Yasa'. Sorularda sonucu önemseyen (faydacı) görüşlere zıt olarak verilir.",
-    ihtimal: 92
-  },
+  // ================= TYT COĞRAFYA (5 Soru) =================
+  { ders: "TYT Coğrafya", konu: "Doğa ve İnsan & Harita Bilgisi", bilgi: "Projeksiyon yöntemleri: Silindirik (Ekvator ve çevresi az hatalı), Konik (Orta enlemler - Türkiye az hatalı), Düzlem (Kutuplar az hatalı). İzohipslerde çizgilerin sıklaştığı yerde eğim artar, akarsu hızlı akar.", pif: "⚠️ İzohips haritasında iç içe kapalı eğriler ok (->) işaretiyle gösterilmişse orada 'Çukur/Krater' vardır, yükselti azalır.", ihtimal: 90 },
+  { ders: "TYT Coğrafya", konu: "Dünyanın Şekli ve Hareketleri", bilgi: "Ekseni eğikliği (23°27') mevsimlerin oluşmasını sağlar. 21 Haziran'da Kuzey Yarımküre en uzun gündüzü yaşar. 21 Mart ve 23 Eylül (Ekinoks) tüm dünyada gece-gündüz eşitliğidir.", pif: "🔴 Gece-gündüz 'oluşumu' Günlük Hareket, gece-gündüz 'sürelerinin değişimi' Yıllık Hareket (Eksen Eğikliği) sonucudur.", ihtimal: 85 },
+  { ders: "TYT Coğrafya", konu: "İklim Bilgisi ve Grafikler", bilgi: "Sıcaklık ve yağış grafikleri. Akdeniz: Yazlar sıcak kurak, kışlar ılık yağışlı. Ekvatoral: Her ay düzenli yağışlı ve sıcak. Muson: Yaz aylarında devasa yağış (Hindistan/Çin).", pif: "⚠️ ÖSYM harita üzerinde Akdeniz iklim bölgelerini sormayı sever (Kaliforniya, Orta Şili, Güney Afrika-Kap, Avustralya G.Batısı).", ihtimal: 99 },
+  { ders: "TYT Coğrafya", konu: "İç ve Dış Kuvvetler", bilgi: "İç kuvvetler enerjisini magmadan alır (Orojenez, Epirojenes, Deprem, Volkanizma). Dış kuvvetler enerjisini Güneş'ten alır (Akarsu, Rüzgar, Buzul). Türkiye genç oluşumlu olduğu için deprem riski yüksektir ve akarsuları hızlı akar.", pif: "🟢 Rüzgarlar en çok kurak/yarı kurak (çöl, İç Anadolu) yerlerde; Buzullar ise kutuplar ve yüksek dağlarda etkilidir.", ihtimal: 92 },
+  { ders: "TYT Coğrafya", konu: "Nüfus Piramitleri", bilgi: "Geniş tabanlı piramit (Üçgen): Doğum oranı yüksek, gelişmemiş ülke (Somali, Afganistan). Arı kovanı piramit: Doğum ve ölüm oranı düşük, gelişmiş ülke (İngiltere, İsveç).", pif: "⚠️ Piramidin tabanı daralıyorsa, ülke son yıllarda doğum oranını azaltıcı politika izlemiş ve gelişmeye başlamış demektir.", ihtimal: 96 },
+  { ders: "TYT Coğrafya", konu: "Doğal Afetler", bilgi: "Jeolojik (Deprem, Tsunami), Klimatolojik (Kasırga, Kuraklık, Aşırı sıcak), Jeomorfolojik (Heyelan, Kaya düşmesi).", pif: "🔴 Türkiye'de en çok can ve mal kaybına neden olan afet DEPREM, en sık görülen ise HEYELAN'dır.", ihtimal: 95 },
 
-  // ================= AYT FELSEFE GRUBU =================
-  {
-    ders: "AYT Felsefe G.",
-    konu: "Psikolojide Yaklaşımlar",
-    bilgi: "Davranışçılık (Behaviorizm), zihni bir kara kutu olarak görür ve sadece gözlenebilen, ölçülebilen davranışlara odaklanır (U-T bağı). Psikanalitik yaklaşım (Freud) ise tamamen 'bilinçdışı' ve çocukluk yaşantılarına odaklanır.",
-    pif: "🔴 SIKÇA ÇIKAR: Freud kelimesini veya 'bilinçdışı' kavramını gördüğün an Psikanalitik (Psikodinamik) yaklaşımı işaretle.",
-    ihtimal: 94
-  },
-  {
-    ders: "AYT Felsefe G.",
-    konu: "Sosyolojide Toplumsal Tabakalaşma",
-    bilgi: "Açık sınıf tabakalaşmasında sınıflar arası geçiş (dikey hareketlilik) serbesttir (günümüz modern toplumları). Kapalı tabakalaşmada (Kast sistemi) geçiş KESİNLİKLE YASAKTIR. Birey doğduğu kasta aittir.",
-    pif: "⚠️ Soru metninde bir köylünün eğitimle doktor olabildiğinden bahsediyorsa bu 'Dikey Hareketlilik' ve 'Açık Sınıf Tabakalaşması'dır.",
-    ihtimal: 89
-  },
-  {
-    ders: "AYT Felsefe G.",
-    konu: "Klasik Mantık - Döndürme",
-    bilgi: "Düz Döndürme Kuralları: 'Tümel Olumlu (A)' önermenin düz döndürmesi 'Tikel Olumlu (I)' olur. (Bütün kediler hayvandır -> Bazı hayvanlar kedidir). 'Tümel Olumsuz (E)' önerme aynen kalır (E).",
-    pif: "⚠️ 'Hiçbir taş canlı değildir' önermesinin düz döndürmesi: 'Hiçbir canlı taş değildir' (E->E). Kuralları bilmek zorundasın!",
-    ihtimal: 87
-  }
+  // ================= AYT COĞRAFYA (6 veya 11 Soru) =================
+  { ders: "AYT Coğrafya", konu: "Ekosistem ve Madde Döngüleri", bilgi: "Biyoçeşitlilik en fazla Ekvatoral ormanlar ve Mercan resiflerindedir. Karbon döngüsünü bozan en büyük insan etkisi: Fosil yakıt (kömür, petrol) kullanımı ve orman tahribatıdır.", pif: "⚠️ Fosil yakıt kullanımı atmosferdeki karbonu (CO2) artırır ve Küresel Isınmaya (Sera etkisi) yol açar.", ihtimal: 95 },
+  { ders: "AYT Coğrafya", konu: "Şehirlerin Fonksiyonları", bilgi: "İdari şehirler (Washington, Ankara), Dini şehirler (Mekke, Kudüs, Vatikan), Teknoloji/Finans (Tokyo, New York), Maden (Essen, Zonguldak).", pif: "🟢 Bir şehrin fonksiyonu ne kadar çeşitliyse küresel etki alanı da o kadar geniştir (New York, Londra gibi).", ihtimal: 88 },
+  { ders: "AYT Coğrafya", konu: "Türkiye'nin Ekonomi Politikaları ve Projeler", bilgi: "GAP (Güneydoğu Anadolu): Tarımsal sulama ve hidroelektrik (Pamuk üretimi çok arttı). ZBK (Zonguldak-Bartın-Karabük): Madencilik ve demir-çelik sanayisi rehabilitasyonu.", pif: "🔴 KOP (Konya Ovası Projesi) tamamen tarımsal sulama odaklıdır (Mavi Tünel ile su taşınır).", ihtimal: 94 },
+  { ders: "AYT Coğrafya", konu: "Tarım ve Hayvancılık (Türkiye)", bilgi: "İklim seçiciliği en düşük tarım ürünleri: Buğday, Üzüm, Elma, Şeker Pancarı. En yüksek olanlar: Çay (sadece Doğu Karadeniz), Muz (sadece Akdeniz).", pif: "⚠️ Şeker pancarı kıyılarda yetiştirilemez değil, ekonomik getiri düşük olduğu için ÇİFTÇİ TERCİH ETMEZ.", ihtimal: 90 },
+  { ders: "AYT Coğrafya", konu: "Küresel İklim Değişimi ve Ekstrem Doğa Olayları", bilgi: "Sera etkisine neden olan gazlar (Metan, Karbondioksit, Kloroflorokarbon). Tsunami ve Deprem jeolojik ekstremdir (iklimle ilgisi yoktur).", pif: "⚠️ Türkiye'de okyanusa kıyı olmadığı için Kasırga/Tayfun (Tropikal siklon) ile devasa Tsunamiler GÖRÜLMEZ.", ihtimal: 97 },
+
+  // ================= TYT FELSEFE (5 Soru) =================
+  { ders: "TYT Felsefe", konu: "Bilgi Felsefesi (Epistemoloji)", bilgi: "Rasyonalizm (Sokrates, Platon, Descartes): Bilgi doğuştan aklımızdadır (Tümdengelim, Matematik). Empirizm (John Locke): İnsan zihni doğuştan boş bir levhadır (Tabula Rasa), her şey deneyimle öğrenilir.", pif: "🔴 Kant'ın 'Kritisizm'i (Eleştiricilik) bu ikisini birleştirir: 'Deneysiz kavramlar boş, kavramsız deneyler kördür.'", ihtimal: 92 },
+  { ders: "TYT Felsefe", konu: "Ahlak Felsefesi (Etik)", bilgi: "Hedonizm (Hazcılık - Epiküros), Egoizm (Bencillik - Hobbes), Utilitarizm (Toplumsal Faydacılık - Bentham, Mill). Kant'ın Ödev Ahlakı: Eylemin niyeti önemlidir, sonucu değil.", pif: "⚠️ Paragrafta 'en çok sayıda insanın en yüksek mutluluğu' geçiyorsa cevap kesinlikle Faydacılık (Utilitarizm) olacaktır.", ihtimal: 96 },
+  { ders: "TYT Felsefe", konu: "Varlık Felsefesi (Ontoloji)", bilgi: "İdealizm: Gerçek varlık soyut, düşünsel olandır (Platon'un İdealar kuramı). Materyalizm: Gerçek varlık sadece maddedir (Karl Marx, Demokritos).", pif: "🟢 Varlık hem madde hem ruhtur (ideadır) diyen görüş Düalizm'dir (Descartes).", ihtimal: 85 },
+  { ders: "TYT Felsefe", konu: "Din ve Siyaset Felsefesi", bilgi: "Siyaset felsefesinde 'İdeal Devlet'i kabul edenler (Platon, Farabi, İbn Haldun) ve reddedenler (Nihilizm, Anarşizm).", pif: "⚠️ Machiavelli'nin 'Amaca giden her yol mubahtır' sözü siyasetin ahlaktan bağımsız olması gerektiğini savunur.", ihtimal: 80 },
+
+  // ================= AYT FELSEFE GRUBU (Psikoloji, Sosyoloji, Mantık - 12 Soru) =================
+  { ders: "AYT Felsefe G.", konu: "Psikolojide Temel Yaklaşımlar", bilgi: "Psikanalitik (Freud): Bilinçaltı, id/ego/süperego, rüyalar, çocukluk travmaları. Davranışçılık (Watson, Skinner): Sadece gözlenebilir davranışlar, U-T bağı. Bilişsel (Piaget): Zihinsel süreçler (algı, bellek, düşünme).", pif: "🔴 Paragraf 'insan biriciktir, özgür iradesi vardır, kendini gerçekleştirme potansiyeli taşır' diyorsa cevap Hümanistik yaklaşımdır.", ihtimal: 98 },
+  { ders: "AYT Felsefe G.", konu: "Öğrenme Türleri", bilgi: "Klasik Koşullanma (Pavlov): Köpeğin zile salya salgılaması (pasif öğrenme). Edimsel Koşullanma (Skinner): Davranışın sonucuna (ödül/ceza) göre tekrarlanması (aktif öğrenme). Bilişsel Öğrenme: Kavrayarak (aniden) veya gizil (farkında olmadan) öğrenme.", pif: "⚠️ Bir davranışı 'pekiştirme' veya 'ödül' yüzünden yapıyorsa kesinlikle Edimsel Koşullanmadır.", ihtimal: 94 },
+  { ders: "AYT Felsefe G.", konu: "Sosyoloji: Toplumsal Yapı", bilgi: "Açık Sınıf Tabakalaşması: Eğitime/zenginliğe bağlı olarak dikey hareketliliğin serbest olduğu modern toplumlar. Kapalı Tabakalaşma: Sınıf değiştirmenin tamamen yasak olduğu Kast sistemi.", pif: "🟢 Memur bir babanın çocuğunun doktor olması 'Dikey Hareketlilik', bakkal dükkanını kapatıp manav açması 'Yatay Hareketlilik'tir.", ihtimal: 95 },
+  { ders: "AYT Felsefe G.", konu: "Sosyoloji: Kültür", bilgi: "Kültürleşme: Farklı kültürlerin birbirini etkilemesi. Kültür Şoku: Yabancı bir kültüre aniden girince yaşanan bocalama. Kültürel Gecikme (Ogburn): Maddi kültürdeki değişimin (teknoloji), manevi kültüre (ahlak, hukuk) hemen yansımaması.", pif: "⚠️ Akıllı telefonların (maddi) çok yayılmasına rağmen siber suç yasalarının (manevi) eksikliği Kültürel Gecikmedir.", ihtimal: 90 },
+  { ders: "AYT Felsefe G.", konu: "Mantık: Kavramlar ve Kavramlar Arası İlişkiler", bilgi: "Eşitlik (İki küme tamamen aynı), Ayrıklık (Ortak eleman yok - Taş ve İnsan), Tam Girişimlilik (Biri diğerini tamamen kapsar - Hayvan ve Kedi), Eksik Girişimlilik (Bazı ortak elemanlar - Öğrenci ve Gözlüklü).", pif: "🔴 Soruda 'Bazı' ile başlayan iki ifade kullanılıyorsa (Bazı öğrenciler çalışkandır, bazı çalışkanlar öğrencidir) aralarında Eksik Girişimlilik vardır.", ihtimal: 92 },
+  { ders: "AYT Felsefe G.", konu: "Mantık: Klasik Mantık Kıyas", bilgi: "Düz döndürme kuralı: 'Tümel Olumlu (A) -> Tikel Olumlu (I)'. Örnek: 'Bütün ağaçlar bitkidir' -> 'Bazı bitkiler ağaçtır'. 'Tümel Olumsuz (E) -> Tümel Olumsuz (E)' kalır.", pif: "⚠️ Mantıkta 'doğruluk' cümlenin içeriği ile (Ankara başkenttir=doğru), 'geçerlilik' ise kurallara uygunluğu ile ilgilidir.", ihtimal: 88 }
 ];

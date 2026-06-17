@@ -1437,31 +1437,52 @@ const APP = {
       "TYT Felsefe": "#f39c12", "AYT Felsefe G.": "#e74c3c"
     };
 
+    // Group data by subject
+    const grouped = {};
+    data.forEach(item => {
+      if(!grouped[item.ders]) grouped[item.ders] = [];
+      grouped[item.ders].push(item);
+    });
+
     let html = `
       <div style="margin-bottom:2rem;">
-        <h1 class="gradient-text" style="font-size:clamp(1.5rem, 4vw, 2rem);"><i class="fas fa-book-open"></i> Sözel Son Tekrar</h1>
-        <p style="color:var(--text-secondary);margin-top:0.5rem;font-size:0.9rem;">Sınavda çıkma ihtimali çok yüksek hap bilgiler. (Özel Püf Noktalarıyla)</p>
+        <h1 class="gradient-text" style="font-size:clamp(1.5rem, 4vw, 2rem);"><i class="fas fa-book-open"></i> Kapsamlı Sözel Son Tekrar</h1>
+        <p style="color:var(--text-secondary);margin-top:0.5rem;font-size:0.9rem;">Ders ders ayrılmış, sınavda çıkma potansiyeline göre filtrelenmiş dev kaynak.</p>
       </div>
-      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+      <div style="display:flex;flex-direction:column;gap:2.5rem;">
     `;
 
-    data.forEach(item => {
-      const bg = bgMap[item.ders] || 'var(--bg-secondary)';
-      const color = colorMap[item.ders] || 'var(--primary)';
+    Object.keys(grouped).forEach(dersAdi => {
+      const color = colorMap[dersAdi] || 'var(--primary)';
       html += `
-        <div class="glass-card stat-hover" style="background:${bg};border-left:4px solid ${color};padding:1.5rem;border-radius:12px;">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;">
-            <div>
-              <span class="badge" style="background:${color}33;color:${color};font-weight:700;">${item.ders}</span>
-              <span style="color:var(--text-primary);font-weight:700;margin-left:0.5rem;font-size:1.1rem;">${item.konu}</span>
+        <div>
+          <h2 style="color:${color};margin-bottom:1rem;border-bottom:2px solid ${color}33;padding-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;">
+            <i class="fas fa-bookmark"></i> ${dersAdi}
+          </h2>
+          <div style="display:flex;flex-direction:column;gap:1.5rem;">
+      `;
+      
+      grouped[dersAdi].forEach(item => {
+        const bg = bgMap[item.ders] || 'var(--bg-secondary)';
+        html += `
+          <div class="glass-card stat-hover" style="background:${bg};border-left:4px solid ${color};padding:1.5rem;border-radius:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;">
+              <div>
+                <span style="color:var(--text-primary);font-weight:700;font-size:1.1rem;">${item.konu}</span>
+              </div>
+              <div style="background:var(--bg-tertiary);color:var(--text-primary);padding:4px 8px;border-radius:8px;font-size:0.8rem;font-weight:700;box-shadow:var(--shadow-sm);">
+                İhtimal: %${item.ihtimal}
+              </div>
             </div>
-            <div style="background:var(--bg-tertiary);color:var(--text-primary);padding:4px 8px;border-radius:8px;font-size:0.8rem;font-weight:700;box-shadow:var(--shadow-sm);">
-              İhtimal: %${item.ihtimal}
+            <p style="color:var(--text-primary);line-height:1.6;font-size:1rem;margin-bottom:1rem;">${item.bilgi}</p>
+            <div style="background:rgba(231, 76, 60, 0.1);border-left:3px solid #e74c3c;padding:0.8rem;border-radius:0 8px 8px 0;color:#e74c3c;font-size:0.9rem;font-weight:600;">
+              ${item.pif}
             </div>
           </div>
-          <p style="color:var(--text-primary);line-height:1.6;font-size:1rem;margin-bottom:1rem;">${item.bilgi}</p>
-          <div style="background:rgba(231, 76, 60, 0.1);border-left:3px solid #e74c3c;padding:0.8rem;border-radius:0 8px 8px 0;color:#e74c3c;font-size:0.9rem;font-weight:600;">
-            ${item.pif}
+        `;
+      });
+
+      html += `
           </div>
         </div>
       `;
