@@ -258,7 +258,8 @@ ul, ol { list-style: none; }
   flex-direction: column;
   z-index: var(--z-sidebar);
   transition: width var(--transition-slow), transform var(--transition-slow);
-  overflow: hidden; /* Hide main overflow to let nav scroll */
+  overflow-y: auto; /* Fallback to standard scroll */
+  overflow-x: hidden;
   box-shadow: 4px 0 24px rgba(0,0,0,0.3);
 }
 
@@ -309,15 +310,12 @@ ul, ol { list-style: none; }
 }
 
 .sidebar-nav {
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 1;
   padding: var(--space-md) var(--space-sm);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  overflow-y: auto; /* Allow scrolling here */
-  padding-bottom: 120px; /* Extra padding for mobile bottom */
-  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  padding-bottom: 150px; /* Force extra padding to bypass mobile bottom bar */
 }
 
 .nav-section-title {
@@ -2805,7 +2803,7 @@ ul, ol { list-style: none; }
     z-index: calc(var(--z-modal) + 1);
   }
 
-  .sidebar.active {
+  .sidebar.active, .sidebar.open {
     transform: translateX(0);
   }
 
