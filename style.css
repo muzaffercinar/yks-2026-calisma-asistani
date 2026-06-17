@@ -309,13 +309,15 @@ ul, ol { list-style: none; }
 }
 
 .sidebar-nav {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   padding: var(--space-md) var(--space-sm);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
   overflow-y: auto; /* Allow scrolling here */
-  padding-bottom: 80px; /* Extra padding for mobile bottom */
+  padding-bottom: 120px; /* Extra padding for mobile bottom */
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
 }
 
 .nav-section-title {
@@ -2803,7 +2805,7 @@ ul, ol { list-style: none; }
     z-index: calc(var(--z-modal) + 1);
   }
 
-  .sidebar.open {
+  .sidebar.active {
     transform: translateX(0);
   }
 
