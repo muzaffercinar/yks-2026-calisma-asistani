@@ -3,6 +3,8 @@
 // Tüm dersler: Türkçe, Fizik, Kimya, Biyoloji, Tarih, Coğrafya, Felsefe Grubu
 // ============================================================
 
+const FB_URL = 'https://yks-2026-a49de-default-rtdb.firebaseio.com';
+
 const APP = {
   currentPage: 'dashboard',
   progress: {},
@@ -11,6 +13,19 @@ const APP = {
   countdownInterval: null,
   currentUser: null,
   isTeacher: false,
+
+  // ==================== FIREBASE HELPERS ====================
+  async fbWrite(path, data) {
+    try {
+      await fetch(`${FB_URL}/${path}.json`, { method: 'PUT', body: JSON.stringify(data), headers: {'Content-Type':'application/json'} });
+    } catch(e) { console.warn('Firebase yazma hatası:', e); }
+  },
+  async fbRead(path) {
+    try {
+      const r = await fetch(`${FB_URL}/${path}.json`);
+      return await r.json();
+    } catch(e) { console.warn('Firebase okuma hatası:', e); return null; }
+  },
 
   // ==================== DERS VERİLERİ ====================
   subjects: {
@@ -380,9 +395,10 @@ const APP = {
 
   saveUsers(users) {
     localStorage.setItem('yks2026_users', JSON.stringify(users));
+    this.fbWrite('users', users);
   },
 
-  doLogin() {
+  async doLogin() {
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value;
     const errEl = document.getElementById('login-error');
@@ -402,8 +418,13 @@ const APP = {
       return;
     }
 
-    // Student login
-    const users = this.getUsers();
+    // Student login - check Firebase first, then local
+    let users = this.getUsers();
+    try {
+      const fbUsers = await this.fbRead('users');
+      if (fbUsers) { users = {...users, ...fbUsers}; localStorage.setItem('yks2026_users', JSON.stringify(users)); }
+    } catch(e) {}
+
     if (!users[username]) {
       errEl.textContent = 'Kullanıcı bulunamadı! Önce kayıt ol.';
       errEl.style.display = 'block';
@@ -421,7 +442,7 @@ const APP = {
     this.startApp();
   },
 
-  doRegister() {
+  async doRegister() {
     const username = document.getElementById('reg-username').value.trim();
     const fullname = document.getElementById('reg-fullname').value.trim();
     const password = document.getElementById('reg-password').value;
@@ -443,7 +464,13 @@ const APP = {
       return;
     }
 
-    const users = this.getUsers();
+    // Check Firebase too
+    let users = this.getUsers();
+    try {
+      const fbUsers = await this.fbRead('users');
+      if (fbUsers) users = {...users, ...fbUsers};
+    } catch(e) {}
+
     if (users[username]) {
       errEl.textContent = 'Bu kullanıcı adı zaten alınmış!';
       errEl.style.display = 'block';
@@ -1352,18 +1379,30 @@ const APP = {
     try {
       const key = 'yks2026_progress_' + (this.currentUser || 'guest');
       localStorage.setItem(key, JSON.stringify(this.progress));
-      // Also save timestamp for teacher tracking
       if (this.currentUser && !this.isTeacher) {
-        localStorage.setItem('yks2026_lastactive_' + this.currentUser, new Date().toISOString());
+        const now = new Date().toISOString();
+        localStorage.setItem('yks2026_lastactive_' + this.currentUser, now);
+        // Firebase'e kaydet
+        this.fbWrite('progress/' + this.currentUser, this.progress);
+        this.fbWrite('lastactive/' + this.currentUser, now);
       }
     } catch (e) { console.warn('Progress kayıt hatası:', e); }
   },
 
-  loadProgress() {
+  async loadProgress() {
     try {
       const key = 'yks2026_progress_' + (this.currentUser || 'guest');
+      // Önce localStorage'dan yükle (hızlı)
       const saved = localStorage.getItem(key);
       if (saved) this.progress = JSON.parse(saved);
+      // Sonra Firebase'den güncelle
+      if (this.currentUser && !this.isTeacher) {
+        const fbProgress = await this.fbRead('progress/' + this.currentUser);
+        if (fbProgress) {
+          this.progress = {...this.progress, ...fbProgress};
+          localStorage.setItem(key, JSON.stringify(this.progress));
+        }
+      }
     } catch (e) { this.progress = {}; }
   },
 
@@ -1552,20 +1591,26 @@ const APP = {
   },
 
   // ==================== ÖĞRETMEN PANELİ ====================
-  renderOgretmenPanel() {
+  async renderOgretmenPanel() {
     if (!this.isTeacher) { this.navigate('dashboard'); return; }
     const main = document.getElementById('main-content');
-    const users = this.getUsers();
+    main.innerHTML = '<div style="text-align:center;padding:3rem;"><div class="spinner"></div><p style="color:var(--text-secondary);margin-top:1rem;">Öğrenci verileri yükleniyor...</p></div>';
+
+    // Firebase'den tüm verileri çek
+    let users = this.getUsers();
+    try {
+      const fbUsers = await this.fbRead('users');
+      if (fbUsers) users = {...users, ...fbUsers};
+    } catch(e) {}
+
+    const fbProgress = await this.fbRead('progress') || {};
+    const fbLastActive = await this.fbRead('lastactive') || {};
+
     const usernames = Object.keys(users);
 
-    // Collect all student stats
     const studentStats = usernames.map(uname => {
       const u = users[uname];
-      let progress = {};
-      try {
-        const saved = localStorage.getItem('yks2026_progress_' + uname);
-        if (saved) progress = JSON.parse(saved);
-      } catch(e) {}
+      let progress = fbProgress[uname] || {};
 
       let totalCorrect = 0, totalWrong = 0;
       Object.values(progress).forEach(p => {
@@ -1575,7 +1620,7 @@ const APP = {
       const totalAnswered = totalCorrect + totalWrong;
       const accuracy = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
 
-      const lastActive = localStorage.getItem('yks2026_lastactive_' + uname);
+      const lastActive = fbLastActive[uname];
       let lastActiveStr = 'Henüz aktif değil';
       if (lastActive) {
         const d = new Date(lastActive);
@@ -1590,7 +1635,6 @@ const APP = {
       return { uname, fullname: u.fullname, createdAt: u.createdAt, progress, totalCorrect, totalWrong, totalAnswered, accuracy, lastActiveStr };
     });
 
-    // Sort by accuracy desc
     studentStats.sort((a, b) => b.accuracy - a.accuracy);
 
     const subjectList = Object.keys(this.subjects);
@@ -1682,15 +1726,20 @@ const APP = {
     `;
   },
 
-  showStudentDetail(uname) {
+  async showStudentDetail(uname) {
     const users = this.getUsers();
     const u = users[uname];
     if (!u) return;
 
     let progress = {};
     try {
-      const saved = localStorage.getItem('yks2026_progress_' + uname);
-      if (saved) progress = JSON.parse(saved);
+      const fbProgress = await this.fbRead('progress/' + uname);
+      if (fbProgress) {
+        progress = fbProgress;
+      } else {
+        const saved = localStorage.getItem('yks2026_progress_' + uname);
+        if (saved) progress = JSON.parse(saved);
+      }
     } catch(e) {}
 
     const container = document.getElementById('student-detail');
