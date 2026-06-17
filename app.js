@@ -1467,7 +1467,7 @@ const APP = {
       `;
     });
 
-    html += \`</div>\`;
+    html += `</div>`;
     main.innerHTML = html;
   },
 
