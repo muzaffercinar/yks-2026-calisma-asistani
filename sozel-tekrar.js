@@ -1,4 +1,4 @@
-const SOZEL_SON_TEKRAR = [
+window.SOZEL_SON_TEKRAR = [
   // ================= TYT TARİH =================
   {
     ders: "TYT Tarih",
