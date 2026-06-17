@@ -516,6 +516,7 @@ const APP = {
 
   renderUserInfo() {
     const el = document.getElementById('user-info');
+    const mobileEl = document.getElementById('mobile-user-actions');
     if (!el) return;
     const users = this.getUsers();
     const user = users[this.currentUser];
@@ -538,6 +539,14 @@ const APP = {
         </button>
       </div>
     `;
+
+    if (mobileEl) {
+      mobileEl.innerHTML = `
+        <button onclick="APP.doLogout()" title="Çıkış Yap" style="background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:8px;color:var(--text-secondary);cursor:pointer;padding:8px 12px;font-size:1rem;display:flex;align-items:center;gap:6px;" onmouseover="this.style.color='#e74c3c'">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      `;
+    }
   },
 
   setupRouting() {
