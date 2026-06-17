@@ -592,6 +592,7 @@ const APP = {
       { id: 'ayt-felsefe-grubu', label: 'Felsefe Grubu', icon: 'fas fa-book', color: '#e74c3c' },
       { type: 'divider', label: 'ARAÇLAR' },
       { id: 'tahmin', label: '🔮 Tahmin Soruları', icon: 'fas fa-magic', color: '#ff6b6b' },
+      { id: 'sozel-tekrar', label: '📖 Sözel Son Tekrar', icon: 'fas fa-book-open', color: '#9b59b6' },
       { id: 'taktikler', label: 'Net Artırma', icon: 'fas fa-chart-line', color: '#f1c40f' },
       { id: 'quiz', label: 'Quiz Modu', icon: 'fas fa-question-circle', color: '#e91e63' },
     ];
@@ -628,6 +629,7 @@ const APP = {
       else if (page === 'taktikler') this.renderTaktikler();
       else if (page === 'quiz') this.renderQuizModu();
       else if (page === 'tahmin') this.renderTahminPage();
+      else if (page === 'sozel-tekrar') this.renderSozelTekrarPage();
       else if (page === 'ogretmen-panel') this.renderOgretmenPanel();
       else {
         const key = this.pageToSubjectKey(page);
@@ -1412,6 +1414,61 @@ const APP = {
         }
       }
     } catch (e) { this.progress = {}; }
+  },
+
+  // ==================== SÖZEL SON TEKRAR SAYFASI ====================
+  renderSozelTekrarPage() {
+    const main = document.getElementById('main-content');
+    const data = window.SOZEL_SON_TEKRAR;
+    if (!data) { main.innerHTML = '<p style="color:var(--text-primary);padding:2rem;">Sözel tekrar verileri yüklenemedi.</p>'; return; }
+
+    const bgMap = {
+      "TYT Tarih": "linear-gradient(135deg, rgba(230,126,34,0.1), rgba(230,126,34,0.05))",
+      "AYT Tarih": "linear-gradient(135deg, rgba(211,84,0,0.1), rgba(211,84,0,0.05))",
+      "TYT Coğrafya": "linear-gradient(135deg, rgba(26,188,156,0.1), rgba(26,188,156,0.05))",
+      "AYT Coğrafya": "linear-gradient(135deg, rgba(22,160,133,0.1), rgba(22,160,133,0.05))",
+      "TYT Felsefe": "linear-gradient(135deg, rgba(243,156,18,0.1), rgba(243,156,18,0.05))",
+      "AYT Felsefe G.": "linear-gradient(135deg, rgba(231,76,60,0.1), rgba(231,76,60,0.05))"
+    };
+
+    const colorMap = {
+      "TYT Tarih": "#e67e22", "AYT Tarih": "#d35400",
+      "TYT Coğrafya": "#1abc9c", "AYT Coğrafya": "#16a085",
+      "TYT Felsefe": "#f39c12", "AYT Felsefe G.": "#e74c3c"
+    };
+
+    let html = `
+      <div style="margin-bottom:2rem;">
+        <h1 class="gradient-text" style="font-size:clamp(1.5rem, 4vw, 2rem);"><i class="fas fa-book-open"></i> Sözel Son Tekrar</h1>
+        <p style="color:var(--text-secondary);margin-top:0.5rem;font-size:0.9rem;">Sınavda çıkma ihtimali çok yüksek hap bilgiler. (Özel Püf Noktalarıyla)</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+    `;
+
+    data.forEach(item => {
+      const bg = bgMap[item.ders] || 'var(--bg-secondary)';
+      const color = colorMap[item.ders] || 'var(--primary)';
+      html += `
+        <div class="glass-card stat-hover" style="background:${bg};border-left:4px solid ${color};padding:1.5rem;border-radius:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;">
+            <div>
+              <span class="badge" style="background:${color}33;color:${color};font-weight:700;">${item.ders}</span>
+              <span style="color:var(--text-primary);font-weight:700;margin-left:0.5rem;font-size:1.1rem;">${item.konu}</span>
+            </div>
+            <div style="background:var(--bg-tertiary);color:var(--text-primary);padding:4px 8px;border-radius:8px;font-size:0.8rem;font-weight:700;box-shadow:var(--shadow-sm);">
+              İhtimal: %${item.ihtimal}
+            </div>
+          </div>
+          <p style="color:var(--text-primary);line-height:1.6;font-size:1rem;margin-bottom:1rem;">${item.bilgi}</p>
+          <div style="background:rgba(231, 76, 60, 0.1);border-left:3px solid #e74c3c;padding:0.8rem;border-radius:0 8px 8px 0;color:#e74c3c;font-size:0.9rem;font-weight:600;">
+            ${item.pif}
+          </div>
+        </div>
+      `;
+    });
+
+    html += \`</div>\`;
+    main.innerHTML = html;
   },
 
   // ==================== TAHMİN SORULARI SAYFASI ====================
